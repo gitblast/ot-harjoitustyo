@@ -1,0 +1,94 @@
+commit d09e9d0fcc7276e59f370bbe596971453cb316b1
+Author: Jarkko Mämmelä <jarkko.mammela@gmail.com>
+Date:   Tue Nov 5 13:56:36 2019 +0200
+
+    laskaritehtäviä
+
+ tiedostoja/file22 | 0
+ tiedostoja/file3  | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 6cc781cb3cea6a25470cecfe110e99e8c52231b2
+Author: Jarkko Mämmelä <jarkko.mammela@gmail.com>
+Date:   Tue Nov 5 13:52:25 2019 +0200
+
+    muokkaa eka ja kolmas
+
+ tiedosto.txt => eka.txt | 1 +
+ kolmas.txt              | 1 +
+ 2 files changed, 2 insertions(+)
+
+commit a9f85ade799cfbbd783a3f6cad8896f6fc0e40eb
+Author: Jarkko Mämmelä <jarkko.mammela@gmail.com>
+Date:   Tue Nov 5 13:50:40 2019 +0200
+
+    poista toinen
+
+ toinen.txt | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit b4edb46a138a838ec57a6bb5953007ff33bb0e8a
+Author: Jarkko Mämmelä <jarkko.mammela@gmail.com>
+Date:   Tue Nov 5 13:49:21 2019 +0200
+
+    muokkaa tiedostoa
+
+ tiedosto.txt | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+commit b162a4ceb13f51d1284f197263b29ed0feb3739c
+Author: Jarkko Mämmelä <jarkko.mammela@gmail.com>
+Date:   Tue Nov 5 13:48:03 2019 +0200
+
+    lisää tekstiä tiedostoon
+
+ tiedosto.txt | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
+
+commit 8336f4439d7cd1f295300e160671799347cca6bc
+Author: Jarkko Mämmelä <jarkko.mammela@gmail.com>
+Date:   Tue Nov 5 13:45:58 2019 +0200
+
+    lisää stuff
+
+ stuff/tiedosto1.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 8599f04611dc5e80932e18d64b1833e133bd29e6
+Author: Jarkko Mämmelä <jarkko.mammela@gmail.com>
+Date:   Tue Nov 5 13:45:01 2019 +0200
+
+    muuta toinen ja kolmas
+
+ kolmas.txt | 1 +
+ toinen.txt | 1 +
+ 2 files changed, 2 insertions(+)
+
+commit c9a203e3fe3e226afd2a500a62be488975adb0d3
+Author: Jarkko Mämmelä <jarkko.mammela@gmail.com>
+Date:   Tue Nov 5 13:44:27 2019 +0200
+
+    lisää kolmas
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 0bbbc3a01a30099ff5aa27e3d17365687dd5144c
+Author: Jarkko Mämmelä <jarkko.mammela@gmail.com>
+Date:   Tue Nov 5 13:43:58 2019 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
+
+commit 9f216a92b9b74d7a541dd4ad0ad740f396e829f0
+Author: Jarkko Mämmelä <jarkko.mammela@gmail.com>
+Date:   Tue Nov 5 13:43:02 2019 +0200
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
