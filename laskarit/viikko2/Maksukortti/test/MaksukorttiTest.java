@@ -96,7 +96,7 @@ public class MaksukorttiTest {
     }
 
     @Test
-    public void kortinSaldoEiYlitaMaksimiarvoa() {
+    public void kortinSaldoEiYlitaMaksimiarvoake() {
         kortti.lataaRahaa(200);
         assertEquals("Kortilla on rahaa 150.0 euroa", kortti.toString());
     }
