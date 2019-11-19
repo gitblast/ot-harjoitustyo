@@ -10,4 +10,6 @@ Graafinen käyttöliittymä tulossa myöhemmin.
 
 [Tuntikirjanpito](https://github.com/gitblast/ot-harjoitustyo/blob/master/dokumentointi/tuntikirjanpito.md)
 
+[Laskarit](https://github.com/gitblast/ot-harjoitustyo/tree/master/laskarit)
+
 [Vaatimusmäärittely](https://github.com/gitblast/ot-harjoitustyo/blob/master/dokumentointi/vaatimusmaarittely.md)
