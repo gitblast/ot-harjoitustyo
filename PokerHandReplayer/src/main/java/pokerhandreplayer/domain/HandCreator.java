@@ -1,6 +1,7 @@
 package pokerhandreplayer.domain;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class HandCreator {
     private ArrayList<Player> players;
@@ -11,6 +12,7 @@ public class HandCreator {
 
     public void createHand(ArrayList<String> lines) {
         extractPlayers(lines);
+        buildActionLog(lines);
     }
     
     public void extractPlayers(ArrayList<String> lines) {
@@ -38,8 +40,53 @@ public class HandCreator {
                     players.add(new Player(name, stackSize));
                 }
             }
+            
+            // get player hole cards
+            if (line.startsWith("Dealt")) {
+                String[] splittedLine = line.split(" ");
+                
+                // only add cards if player has none
+                for (Player player : players) {
+                    if (line.contains(player.getName()) && player.getCards().size() == 0) {
+                        // get the first card
+                        String firstCardString = Arrays.stream(splittedLine)
+                                .filter(s -> s.startsWith("["))
+                                .findFirst()
+                                .get();
+                        
+                        // get first card index in the splitted line
+                        int firstCardIndex = Arrays.asList(splittedLine).indexOf(firstCardString);
+                        
+                        for (int i = firstCardIndex; i < splittedLine.length; i++) {
+                            // remove possible brackets from card string
+                            String bracketless = splittedLine[i].replaceAll("\\[|\\]", "");
+                            
+                            if (bracketless.equals("X")) {
+                                // if card is unknown, add blank card (value -1)
+                                player.addCard(new Card());
+                            } else {
+                                // get card integer value
+                                int value = Card.intValue(bracketless.substring(0, 1));
+                                // get card suit
+                                Suit suit = Card.stringToSuit(bracketless.substring(1));
+                                // add card
+                                player.addCard(new Card(value, suit));
+                            }
+                        }
+                        
+                        System.out.println("PLAYER: " + player);
+                        System.out.println("CARDS: " + player.getCards());
+                        System.out.println("");
+                    }
+                }
+            }
+            
         }
         
+    }
+    
+    public void buildActionLog(ArrayList<String> lines) {
+        //
     }
     
     public int getStackSizeFromString(String stackString) {
