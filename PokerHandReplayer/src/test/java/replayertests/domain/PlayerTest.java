@@ -3,7 +3,9 @@ package replayertests.domain;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import pokerhandreplayer.domain.Card;
 import pokerhandreplayer.domain.Player;
+import pokerhandreplayer.domain.Suit;
 
 public class PlayerTest {
     
@@ -34,5 +36,28 @@ public class PlayerTest {
     @Test
     public void invalidReductionReturnsFalse() {
         assertEquals(false, player.reduceStack(666));
+    }
+    
+    @Test
+    public void newPlayerHasNoCards() {
+        assertEquals(0, player.getCards().size());
+    }
+    
+    @Test
+    public void cardsCanBeAdded() {
+        Card c = new Card(10, Suit.DIAMONDS);
+        
+        player.addCard(c);
+        assertEquals(1, player.getCards().size());
+    }
+    
+    @Test
+    public void getNameReturnsName() {
+        assertEquals("TestPlayer", player.getName());
+    }
+    
+    @Test
+    public void toStringWorksCorrectly() {
+        assertEquals("TestPlayer (5.55 €)", player.toString());
     }
 }

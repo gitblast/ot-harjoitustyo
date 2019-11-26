@@ -86,7 +86,33 @@ public class HandCreator {
     }
     
     public void buildActionLog(ArrayList<String> lines) {
-        //
+        ArrayList<GameState> actionLog = new ArrayList<>();
+        // testing
+        for (String line : lines) {
+            for (Player player : players) {
+                if (line.startsWith(player.getName())) {
+                    String[] splittedLine = line.split(" ");
+                    // pitää ottaa vielä huomioon nimet joissa välejä
+                    String action = splittedLine[1];
+                    int bet = 0;
+                    
+                    // pitää ottaa vielä huomioon lopun summaryt jne
+                    if (splittedLine[2].equals("ante")) {
+                        bet = Integer.valueOf(splittedLine[3]);
+                    } else if (splittedLine[2].equals("in")) {
+                        bet = Integer.valueOf(splittedLine[4]);
+                    } else {
+                        bet = Integer.valueOf(splittedLine[2]);
+                    }
+                    
+                    // ei toimi samalla tavalla ku js, lue mikä ero
+                    //ArrayList<Player> thisStatePlayers = players.stream().map(p -> new Player(p.getName(), p.getStackSize()));
+                    
+                    // luodaan gamestate jossa pelaajat mapattuna niin että kyseisen rivin actionin pelaaja mapattu, muut samoja ja potsize lasketaan rivin muutoksen mukaan
+                    // pitää lisätä myös maholliset jaetut kortit
+                }
+            }
+        }
     }
     
     public int getStackSizeFromString(String stackString) {

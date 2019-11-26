@@ -58,25 +58,15 @@ public class Card {
     public String toString() {
         if (value == -1) {
             return "X";
-        }
-        
-        if (value == 10) {
+        } else if (value == 10) {
             return "T of " + suit.toString();
-        }
-        
-        if (value == 11) {
+        } else if (value == 11) {
             return "J of " + suit.toString();
-        }
-        
-        if (value == 12) {
+        } else if (value == 12) {
             return "Q of " + suit.toString();
-        }
-        
-        if (value == 13) {
+        } else if (value == 13) {
             return "K of " + suit.toString();
-        }
-        
-        if (value == 14 || value == 1) {
+        } else if (value == 14 || value == 1) {
             return "A of " + suit.toString();
         }
         

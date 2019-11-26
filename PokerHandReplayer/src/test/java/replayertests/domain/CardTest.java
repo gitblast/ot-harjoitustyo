@@ -30,6 +30,49 @@ public class CardTest {
         Card c = new Card(0, Suit.DIAMONDS);
     }
     
+    // stringToSuit -testing:
+    
+    @Test
+    public void stringToSuitWorksWithDiamonds() {
+        assertEquals(Suit.DIAMONDS, Card.stringToSuit("d"));
+    }
+    
+    @Test
+    public void stringToSuitWorksWithSpades() {
+        assertEquals(Suit.SPADES, Card.stringToSuit("s"));
+    }
+    
+    @Test
+    public void stringToSuitWorksWithHearts() {
+        assertEquals(Suit.HEARTS, Card.stringToSuit("h"));
+    }
+    
+    @Test
+    public void stringToSuitWorksWithClubs() {
+        assertEquals(Suit.CLUBS, Card.stringToSuit("c"));
+    }
+    
+    @Test
+    public void invalidParameterReturnsNull() {
+        assertEquals(null, Card.stringToSuit("p"));
+    }
+    
+    // intValue -testing:
+    
+    @Test
+    public void intValueReturnsNumericalValue() {
+        int sum = Card.intValue("A")
+                + Card.intValue("K")
+                + Card.intValue("Q")
+                + Card.intValue("J")
+                + Card.intValue("T")
+                + Card.intValue("9");
+        
+        assertEquals(14 + 13 + 12 + 11 + 10 + 9, sum);
+    }
+    
+    // toString -testing:
+    
     @Test
     public void valueOfOneToStringReturnsA() {
         Card smallAce = new Card(1, Suit.DIAMONDS);
@@ -58,5 +101,23 @@ public class CardTest {
     public void valueOf11ToStringReturnsJ() {
         Card smallAce = new Card(11, Suit.DIAMONDS);
         assertEquals("J of DIAMONDS", smallAce.toString());
+    }
+    
+    @Test
+    public void valueOf10ToStringReturnsT() {
+        Card tenner = new Card(10, Suit.DIAMONDS);
+        assertEquals("T of DIAMONDS", tenner.toString());
+    }
+    
+    @Test
+    public void cardCreatedWithEmptyConstructorToStringReturnsX() {
+        Card c = new Card();
+        assertEquals("X", c.toString());
+    }
+    
+    @Test
+    public void cardToStringReturnsValueAndSuit() {
+        Card c = new Card(9, Suit.DIAMONDS);
+        assertEquals("9 of DIAMONDS", c.toString());
     }
 }

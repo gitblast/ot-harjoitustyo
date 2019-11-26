@@ -48,7 +48,7 @@ public class Player {
 
     @Override
     public String toString() {
-        return this.name + " (" + this.stackSize/100 + " €)";
+        return this.name + " (" + Double.valueOf(this.stackSize) / 100 + " €)";
     }
     
     
