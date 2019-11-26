@@ -8,6 +8,8 @@ Sovelluslogiikka on kesken, tässä vaiheessa käsihistoria haetaan esimerkkitie
 
 Graafinen käyttöliittymä tulossa myöhemmin.
 
+[Pakkaus/luokkakaavio](https://github.com/gitblast/ot-harjoitustyo/blob/master/dokumentointi/arkkitehtuuri.md)
+
 [Tuntikirjanpito](https://github.com/gitblast/ot-harjoitustyo/blob/master/dokumentointi/tuntikirjanpito.md)
 
 [Laskarit](https://github.com/gitblast/ot-harjoitustyo/tree/master/laskarit)
