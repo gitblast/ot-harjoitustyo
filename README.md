@@ -1,15 +1,15 @@
 # Ohjelmistotekniikka harjoitustyö
 
-## Tehtävät
+## Poker Hand Replayer
 
-**Viikko 1:**
+Sovelluksen avulla käyttäjä voi käydä jälkikäteen läpi tekstipohjaisia standardimuotoisia käsihistorioita graafisessa muodossa.
 
-[gitlog.txt](https://github.com/gitblast/ot-harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt)
+Sovelluslogiikka on kesken, tässä vaiheessa käsihistoria haetaan esimerkkitiedostosta. Tällä hetkellä sovellus tunnistaa pelaajat, pelaajien merkkitilanteen ja lähtökäden.
 
-[komentorivi.txt](https://github.com/gitblast/ot-harjoitustyo/blob/master/laskarit/viikko1/komentorivi.txt)
+Graafinen käyttöliittymä tulossa myöhemmin.
 
-**Viikko 2:**
+[Tuntikirjanpito](https://github.com/gitblast/ot-harjoitustyo/blob/master/dokumentointi/tuntikirjanpito.md)
 
-[testikattavuus -kuva](https://github.com/gitblast/ot-harjoitustyo/blob/master/laskarit/viikko2/testikattavuus.png)
+[Laskarit](https://github.com/gitblast/ot-harjoitustyo/tree/master/laskarit)
 
-**[Vaatimusmäärittely](https://github.com/gitblast/ot-harjoitustyo/blob/master/dokumentointi/vaatimusmaarittely.md)**
+[Vaatimusmäärittely](https://github.com/gitblast/ot-harjoitustyo/blob/master/dokumentointi/vaatimusmaarittely.md)
