@@ -12,7 +12,7 @@ public class HandCreator {
 
     public void createHand(ArrayList<String> lines) {
         extractPlayers(lines);
-        buildActionLog(lines);
+        //buildActionLog(lines);
     }
     
     public void extractPlayers(ArrayList<String> lines) {
