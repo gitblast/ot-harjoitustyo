@@ -4,7 +4,15 @@
 
 Sovelluksen avulla käyttäjä voi käydä jälkikäteen läpi tekstipohjaisia standardimuotoisia käsihistorioita graafisessa muodossa.
 
-Sovelluslogiikka on kesken, tässä vaiheessa käsihistoria haetaan esimerkkitiedostosta. Tällä hetkellä sovellus tunnistaa pelaajat, pelaajien merkkitilanteen ja lähtökäden.
+Sovelluksen voi suorittaa juurihakemistossa ajamalla:
+
+```
+cd PokerHandReplayer && mvn compile exec:java -Dexec.mainClass=pokerhandreplayer.PokerHandReplayer
+```
+
+Sovelluslogiikka on kesken, tässä vaiheessa käsihistoria haetaan esimerkkitiedostosta. 
+
+Tällä hetkellä sovellus tunnistaa pelaajat, pelaajien merkkitilanteen ja lähtökäden, sekä osaa etsiä uudet betsikoot riveiltä. Pian sovellus muodostaa rivi riviltä uusia GameState -olioita, jotka muodostavat lopullisen "Replayn", jota käyttäjä voi selata askel askeleelta ja tehdä kommentteja jokaisen "actionin" välillä.
 
 Graafinen käyttöliittymä tulossa myöhemmin.
 
