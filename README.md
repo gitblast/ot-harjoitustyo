@@ -33,7 +33,7 @@ mvn jxr:jxr checkstyle:checkstyle
 ```
 ## Suoritettavan jarin generointi
 
-PokerHandReplayer -hajemistossa: (ohjelman tämänhetkisestä versio olettaa [esimerkkitiedoston](https://github.com/gitblast/ot-harjoitustyo/blob/master/PokerHandReplayer/handhistory.txt) juurihakemistosta)
+PokerHandReplayer -hajemistossa: (ohjelman tämänhetkisestä versio olettaa [esimerkkitiedoston](https://github.com/gitblast/ot-harjoitustyo/blob/master/PokerHandReplayer/handhistory.txt) löytyvän juurihakemistosta)
 ```
 mvn package
 ```
