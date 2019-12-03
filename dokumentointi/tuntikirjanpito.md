@@ -6,4 +6,6 @@
 | 19.11. | 4    | Lisää testejä ja sovelluslogiikkaa eteenpäin |
 | 25.11. | 3    | Lisää testejä ja checkstyle, pakkauskaaviot jne |
 | 26.11. | 4    | Lisää testejä ja sovelluslogiikkaa eteenpäin, tosin useiden ongelmien kera |
-| yht   | 16   | | 
+| 1.12. | 5    | Sovelluslogiikkaa huomattavasti |
+| 3.12. | 6    | Sovelluslogiikan ongelmien ratkaisuja sekä tekstikäyttöliittymä testaamiseen |
+| yht   | 27   | | 
