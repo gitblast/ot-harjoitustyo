@@ -2,19 +2,48 @@
 
 ## Poker Hand Replayer
 
-Sovelluksen avulla käyttäjä voi käydä jälkikäteen läpi tekstipohjaisia standardimuotoisia käsihistorioita graafisessa muodossa.
+Sovelluksen avulla käyttäjä voi käydä jälkikäteen läpi tekstipohjaisia standardimuotoisia käsihistorioita graafisessa muodossa vaihe vaiheelta ja jättää kommentteja ja muistiinpanoja haluamiinsa vaiheisiin jälkianalyysiä varten.
 
-Sovelluksen voi suorittaa juurihakemistossa ajamalla:
+## Sovelluksen suorittaminen
+
+Sovelluksen voi suorittaa juurihakemistossa ajamalla ensin
+```
+cd PokerHandReplayer
+```
+ja sen jälkeen
 
 ```
-cd PokerHandReplayer && mvn compile exec:java -Dexec.mainClass=pokerhandreplayer.PokerHandReplayer
+mvn compile exec:java -Dexec.mainClass=pokerhandreplayer.PokerHandReplayer
+```
+## Testaus
+
+PokerHandReplayer -hajemistossa:
+```
+mvn test
 ```
 
-Sovelluslogiikka on kesken, tässä vaiheessa käsihistoria haetaan esimerkkitiedostosta. 
+Jacoco -raportin generointi: (testauskattavuus tällä hetkellä huono, ohjelman seuraavassa versiossa se tulee olemaan kattavampi)
+```
+mvn test jacoco:report
+```
 
-Tällä hetkellä sovellus tunnistaa pelaajat, pelaajien merkkitilanteen ja lähtökäden, sekä osaa etsiä uudet betsikoot riveiltä. Pian sovellus muodostaa rivi riviltä uusia GameState -olioita, jotka muodostavat lopullisen "Replayn", jota käyttäjä voi selata askel askeleelta ja tehdä kommentteja jokaisen "actionin" välillä.
+Checkstyle -raportin generointi:
+```
+mvn jxr:jxr checkstyle:checkstyle
+```
+## Suoritettavan jarin generointi
 
-Graafinen käyttöliittymä tulossa myöhemmin.
+PokerHandReplayer -hajemistossa: (ohjelman tämänhetkisestä versiosta generoitu jar ei osaa lukea käsiesimerkkiä eli on hyödytön)
+```
+mvn package
+```
+## Sovelluslogiikasta
+
+Sovelluslogiikka on kesken, tässä vaiheessa käsihistoria haetaan [esimerkkitiedostosta](https://github.com/gitblast/ot-harjoitustyo/blob/master/PokerHandReplayer/handhistory.txt), myöhemmin käyttäjä voi importata sen tekstitiedostosta tai copy-pasteamalla.
+
+Tällä hetkellä sovellus tunnistaa pelaajat, pelaajien lähtömerkkitilanteen sekä lähtökortit. Sovellus luo jokaisen toimintavuoron jälkeen uuden pelitilan, joka sisältää pelaajien sen hetkiset merkkitilanteet, informaation siitä miten pelaaja käyttää vuoronsa (bet, call, raise, fold, post blind/ante, bring in), mahdollisen panostuksen sekä potin koon. Ohjelman seuraava versio tunnistaa myös kesken käden jaetut lisäkortit. Käden päätteeksi sovellus muodostaa yhteenvedon, jossa näkyy kunkin pelaajan kädessä voittama tai häviämä summa.
+
+Käyttäjä voi selata pelitiloja eteen tai taaksepäin vaihe vaiheelta, tällä hetkellä kuitenkin vain tekstikäyttöliittymän avulla. Graafinen käyttöliittymä tulossa myöhemmin.
 
 [Pakkaus/luokkakaavio](https://github.com/gitblast/ot-harjoitustyo/blob/master/dokumentointi/arkkitehtuuri.md)
 
