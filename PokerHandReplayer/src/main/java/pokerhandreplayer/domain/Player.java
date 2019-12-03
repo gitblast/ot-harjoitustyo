@@ -7,6 +7,9 @@ public class Player {
     private String name;
     private int stackSize; // in cents
     private ArrayList<Card> cards;
+    private String label; // bets, calls, raises, etc
+    private int bet; // in cents
+    private boolean hasTurn;
     
     // mieti kannattaako tehä pelaajakohtanen lista burnatuille/vaihetuille korteille vetopeleihi
 
@@ -14,6 +17,18 @@ public class Player {
         this.name = name;
         this.stackSize = stackSize < 0 ? 0 : stackSize;
         this.cards = new ArrayList<>();
+        this.bet = 0;
+        this.label = "";
+        this.hasTurn = false;
+    }
+    
+    public Player(String name, int stackSize, ArrayList<Card> cards, int bet, String label) {
+        this.name = name;
+        this.stackSize = stackSize < 0 ? 0 : stackSize;
+        this.cards = cards;
+        this.bet = bet;
+        this.label = label;
+        this.hasTurn = false;
     }
     
     public Boolean reduceStack(int amount) {
@@ -30,12 +45,38 @@ public class Player {
         return true;
     }
 
+    public void setHasTurn(boolean hasTurn) {
+        this.hasTurn = hasTurn;
+    }
+
+    public boolean hasTurn() {
+        return hasTurn;
+    }
+    
+    
+
     public String getName() {
         return name;
     }
 
     public int getStackSize() {
         return stackSize;
+    }
+
+    public void setBet(int bet) {
+        this.bet = bet;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
+    }
+
+    public String getLabel() {
+        return label;
+    }
+
+    public int getBet() {
+        return bet;
     }
 
     public ArrayList<Card> getCards() {
@@ -48,7 +89,7 @@ public class Player {
 
     @Override
     public String toString() {
-        return this.name + " (" + Double.valueOf(this.stackSize) / 100 + " €)";
+        return this.name + " (" + Double.valueOf(this.stackSize) + " €)";
     }
     
     

@@ -23,30 +23,30 @@ public class HandCreatorTest {
     @Test
     public void stackSizeIsConvertedCorrectly1() {
         String amount = "(1,527,889.12)";
-        assertEquals(152788912, hc.getStackSizeFromString(amount));
+        assertEquals(152788912, hc.getAmountInCentsFromString(amount));
     }
     
     @Test
     public void stackSizeIsConvertedCorrectly2() {
         String amount = "(1,527,889)";
-        assertEquals(152788900, hc.getStackSizeFromString(amount));
+        assertEquals(152788900, hc.getAmountInCentsFromString(amount));
     }
     
     @Test
     public void stackSizeIsConvertedCorrectly3() {
         String amount = "(0.00)";
-        assertEquals(0, hc.getStackSizeFromString(amount));
+        assertEquals(0, hc.getAmountInCentsFromString(amount));
     }
     
     @Test
     public void stackSizeIsConvertedCorrectly4() {
         String amount = "(0.01)";
-        assertEquals(1, hc.getStackSizeFromString(amount));
+        assertEquals(1, hc.getAmountInCentsFromString(amount));
     }
     
     @Test
     public void stackSizeIsConvertedCorrectly5() {
         String amount = "(889)";
-        assertEquals(88900, hc.getStackSizeFromString(amount));
+        assertEquals(88900, hc.getAmountInCentsFromString(amount));
     }
 }
