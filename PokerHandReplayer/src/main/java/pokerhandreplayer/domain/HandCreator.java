@@ -167,33 +167,33 @@ public class HandCreator {
         // handle folds, calls and 'wins'
         if (action.equals("folds") || action.equals("checks")) {
             // remove the "s" from action string
-            action = action.substring(0, action.length()-1); // ehkä jos "wins" niin bet vois olla potin koko
+            action = action.substring(0, action.length() - 1); // ehkä jos "wins" niin bet vois olla potin koko
         }
 
         // handle bets and raises and calls
         if (action.equals("bets") || action.equals("raises") || action.equals("calls")) {
             // remove the "s" from action string
-            action = action.substring(0, action.length()-1);
-            bet = getAmountInCentsFromString(splittedLine[i+1]);
+            action = action.substring(0, action.length() - 1);
+            bet = getAmountInCentsFromString(splittedLine[i + 1]);
         }
 
         // handle antes, bring ins and blinds
-        if (splittedLine.length > i+1) {
-            if (splittedLine[i+1].equals("ante")) {
+        if (splittedLine.length > i + 1) {
+            if (splittedLine[i + 1].equals("ante")) {
                 action = "post ante"; // vai pelkkä ante?
-                bet = getAmountInCentsFromString(splittedLine[i+2]);
+                bet = getAmountInCentsFromString(splittedLine[i + 2]);
                 potIncrement = bet;
-            } else if (splittedLine[i+1].equals("in")) {
+            } else if (splittedLine[i + 1].equals("in")) {
                 action = "bring in";
-                bet = getAmountInCentsFromString(splittedLine[i+3]);
+                bet = getAmountInCentsFromString(splittedLine[i + 3]);
                 potIncrement = bet;
-            } else  if (splittedLine[i+1].equals("small")) {
+            } else  if (splittedLine[i + 1].equals("small")) {
                 action = "small blind";
-                bet = getAmountInCentsFromString(splittedLine[i+2]);
+                bet = getAmountInCentsFromString(splittedLine[i + 2]);
                 potIncrement = bet;
-            } else  if (splittedLine[i+1].equals("big")) {
+            } else  if (splittedLine[i + 1].equals("big")) {
                 action = "big blind";
-                bet = getAmountInCentsFromString(splittedLine[i+2]);
+                bet = getAmountInCentsFromString(splittedLine[i + 2]);
                 potIncrement = bet;
             }
         }
@@ -255,7 +255,7 @@ public class HandCreator {
         ArrayList<Player> previousPlayers = states.get(states.size() - 1).getPlayers();
         
         // add increment to pot in case of antes, blinds or bring ins
-        int pot = states.get(states.size() -1 ).getPot() + potIncrement;
+        int pot = states.get(states.size() - 1).getPot() + potIncrement;
         
         ArrayList<Player> newPlayers = new ArrayList<>();
         

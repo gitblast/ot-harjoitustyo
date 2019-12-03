@@ -89,7 +89,7 @@ public class Player {
 
     @Override
     public String toString() {
-        return this.name + " (" + Double.valueOf(this.stackSize) + " €)";
+        return this.name + " (" + Double.valueOf(this.stackSize) + " cent)";
     }
     
     

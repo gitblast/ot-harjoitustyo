@@ -58,6 +58,6 @@ public class PlayerTest {
     
     @Test
     public void toStringWorksCorrectly() {
-        assertEquals("TestPlayer (5.55 €)", player.toString());
+        assertEquals("TestPlayer (555.0 cent)", player.toString());
     }
 }
