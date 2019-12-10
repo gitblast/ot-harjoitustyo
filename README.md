@@ -37,11 +37,18 @@ PokerHandReplayer -hajemistossa: (ohjelman tämänhetkinen versio olettaa [esime
 ```
 mvn package
 ```
+## Javadocin generointi
+
+Sovelluksen juurihakemistossa
+```
+mvn javadoc:javadoc
+```
+
 ## Sovelluslogiikasta
 
 Sovelluslogiikka on kesken, tässä vaiheessa käsihistoria haetaan [esimerkkitiedostosta](https://github.com/gitblast/ot-harjoitustyo/blob/master/PokerHandReplayer/handhistory.txt), myöhemmin käyttäjä voi importata sen tekstitiedostosta tai copy-pasteamalla.
 
-Tällä hetkellä sovellus tunnistaa pelaajat, pelaajien lähtömerkkitilanteen sekä lähtökortit. Sovellus luo jokaisen toimintavuoron jälkeen uuden pelitilan, joka sisältää pelaajien sen hetkiset merkkitilanteet, informaation siitä miten pelaaja käyttää vuoronsa (bet, call, raise, fold, post blind/ante, bring in), mahdollisen panostuksen sekä potin koon. Ohjelman seuraava versio tunnistaa myös kesken käden jaetut lisäkortit. Käden päätteeksi sovellus muodostaa yhteenvedon, jossa näkyy kunkin pelaajan kädessä voittama tai häviämä summa.
+Tällä hetkellä sovellus tunnistaa pelaajat, pelaajien lähtömerkkitilanteen ja lähtökortit sekä lisää pelaajille kesken jaon jaettavat lisäkortit. Sovellus luo jokaisen toimintavuoron jälkeen uuden pelitilan, joka sisältää pelaajien sen hetkiset merkkitilanteet, informaation siitä miten pelaaja käyttää vuoronsa (bet, call, raise, fold, post blind/ante, bring in), mahdollisen panostuksen sekä potin koon. Käden päätteeksi sovellus muodostaa yhteenvedon, jossa näkyy kunkin pelaajan kädessä voittama tai häviämä summa.
 
 Käyttäjä voi selata pelitiloja eteen tai taaksepäin vaihe vaiheelta, tällä hetkellä kuitenkin vain tekstikäyttöliittymän avulla. Graafinen käyttöliittymä tulossa myöhemmin.
 
