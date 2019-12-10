@@ -52,8 +52,20 @@ public class Player {
     public boolean hasTurn() {
         return hasTurn;
     }
+
+    public void setCards(ArrayList<Card> cards) {
+        this.cards = cards;
+    }
     
     
+    
+    public ArrayList<Card> getCardsDeepCopy() {
+        ArrayList<Card> newCards = new ArrayList<>();
+        for (Card c : cards) {
+            newCards.add(new Card(c.getValue(), c.getSuit()));
+        }
+        return newCards;
+    }
 
     public String getName() {
         return name;

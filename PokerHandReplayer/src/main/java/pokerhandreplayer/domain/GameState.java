@@ -24,7 +24,11 @@ public class GameState {
     public String toString() {    
         String s = "";
         for (Player p : players) {
-            s += p + " " + p.getLabel() + " " + (p.getBet() != 0 ? p.getBet() : "") + (p.hasTurn() ? " *<" : "") + "\n";
+            s += p + " " 
+                    + StringHelper.getCardsString(p.getCards()) + " "
+                    + p.getLabel() + " " 
+                    + (p.getBet() != 0 ? p.getBet() : "") + (p.hasTurn() ? " *<" : "") 
+                    + "\n";
         }
         
         s += "\nPOT: " + pot + "\n";

@@ -6,104 +6,62 @@ import java.util.Arrays;
 public class HandCreator {
     private ArrayList<String> playerNames;
     private ArrayList<GameState> states;
-    
-    // ONGELMA: JOS ON ANTE JA BRING IN, LASKETAAN VAIN BRING IN
 
     public HandCreator() {
         this.playerNames = new ArrayList<>();
         this.states = new ArrayList<>();
     }   
 
+    public ArrayList<GameState> getStates() {
+        return states;
+    }
+
+    public ArrayList<String> getPlayerNames() {
+        return playerNames;
+    }
+    
+    /**
+     * Takes an arraylist of strings from a hand history -text file and converts it to an arraylist of game states.
+     * @param lines
+     * @return list of gamestates representing the hand history given as parameter
+     */
     public ArrayList<GameState> createHand(ArrayList<String> lines) {
         buildInitialState(lines);
         buildActionLog(lines);
         return states;
     }
     
+    /**
+     * Extracts the players and their stack sizes from the hand history and creates the initial game state.
+     * @param lines 
+     */
     public void buildInitialState(ArrayList<String> lines) {
         ArrayList<Player> players = new ArrayList<>();
         
         for (String line : lines) {
             // get player names
             if (line.startsWith("Seat ")) {
-                String name = getNameFromLine(line);
+                String name = StringHelper.getNameFromLine(line);
                 
                 // if the name hasn't been added yet, get the stack size and add to players -list
                 if (!playerNames.contains(name)) {
                     playerNames.add(name);
                     
                     // get player stacksize
-                    int stackSize = getStackSizeFromLine(line);
+                    int stackSize = StringHelper.getStackSizeFromLine(line);
                     players.add(new Player(name, stackSize));
                 }
             }
-            
-            // get player hole cards
-            if (line.startsWith("Dealt")) {
-                setPlayerHoleCards(line, players);
-            }
-            
         }
         
         // add initial state to state -list
         states.add(new GameState(players, 0));
     }
     
-    private String getNameFromLine(String line) {
-        String[] splittedLine = line.split(" ");
-        String name = splittedLine[2];
-
-        // if the name has spaces, add the missing parts
-        int i = 3;
-        while (i < splittedLine.length && !splittedLine[i].startsWith("(")) {
-            name += " " + splittedLine[i];
-            i++;
-        }
-        
-        return name;
-    }
-    
-    private int getStackSizeFromLine(String line) {
-        String[] splittedLine = line.split(" ");
-        String stackString = splittedLine[splittedLine.length - 1];
-        return getAmountInCentsFromString(stackString);
-    }
-    
-    private void setPlayerHoleCards(String line, ArrayList<Player> players) {
-        String[] splittedLine = line.split(" ");
-                
-        // only add cards if player has none
-        for (Player player : players) {
-            if (line.contains(player.getName()) && player.getCards().size() == 0) {
-                // get the first card
-                String firstCardString = Arrays.stream(splittedLine)
-                        .filter(s -> s.startsWith("["))
-                        .findFirst()
-                        .get();
-
-                // get first card index in the splitted line
-                int firstCardIndex = Arrays.asList(splittedLine).indexOf(firstCardString);
-
-                for (int i = firstCardIndex; i < splittedLine.length; i++) {
-                    // remove possible brackets from card string
-                    String bracketless = splittedLine[i].replaceAll("\\[|\\]", "");
-
-                    if (bracketless.equals("X")) {
-                        // if card is unknown, add blank card (value -1)
-                        player.addCard(new Card());
-                    } else {
-                        // get card integer value
-                        int value = Card.intValue(bracketless.substring(0, 1));
-                        // get card suit
-                        Suit suit = Card.stringToSuit(bracketless.substring(1));
-                        // add card
-                        player.addCard(new Card(value, suit));
-                    }
-                }
-            }
-        }
-    }
-    
+    /**
+     * Converts every line of the hand history into a game state and stacks them in the states -object.
+     * @param lines 
+     */
     public void buildActionLog(ArrayList<String> lines) {
         // go through all the lines
         for (String line : lines) {
@@ -122,7 +80,10 @@ public class HandCreator {
             }
             
             // check if line starts with dealing additional cards
-            // TODO
+            if (line.startsWith("Dealt ")) { 
+                setNewCards(line);
+                
+            }
             
             // check for new street
             if (line.startsWith("***")) {
@@ -132,6 +93,21 @@ public class HandCreator {
         }
     }
     
+    /**
+     * Converts text from the line given as parameter into card objects, adds the cards to the corret player and creates a new game state with updated cards.
+     * @param line 
+     */
+    public void setNewCards(String line) {
+        ArrayList<Player> previous = states.get(states.size() - 1).getPlayers();
+        String name = StringHelper.getNameFromLine(line);
+        ArrayList<Card> newCards = StringHelper.getCardsFromLine(line);
+        createState(name, "dealt cards", 0, 0, newCards);
+    }
+    
+    /**
+     * Calculates all the bets of the betting round together, substracts them from the corresponding player's stack and adds them in the main pot.
+     * Then creates a new game state with all the players' bets set to 0 and the pot updated.
+     */
     public void setNewPot() {
         ArrayList<Player> previous = states.get(states.size() - 1).getPlayers();
         int pot = states.get(states.size() - 1).getPot();
@@ -141,7 +117,8 @@ public class HandCreator {
         // add all bets to the pot
         for (Player p : previous) {
             pot += p.getBet();
-            Player newPlayer = new Player(p.getName(), p.getStackSize()); // kortit puuttuu atm, ei tarvi laittaakkaa ku uudelle..
+            Player newPlayer = new Player(p.getName(), p.getStackSize());
+            newPlayer.setCards(p.getCardsDeepCopy());
             if (p.getLabel().equals("fold") || p.getLabel().equals("folded")) {
                 newPlayer.setLabel("folded");
             } else {
@@ -155,9 +132,16 @@ public class HandCreator {
         states.add(new GameState(newPlayers, pot));
     }
     
+    /**
+     * Handles the lines where a player makes an action (bets, calls, checks, folds, posts ante/bring in/blind). Creates a new state updating the player's label, bet and
+     * in case of antes of winnig the hand, the pot.
+     * @param line
+     * @param player
+     * @return 
+     */
     public boolean addPlayerAction(String line, String player) {
         String[] splittedLine = line.split(" ");
-        int i = getActionIndex(player);
+        int i = StringHelper.getActionIndex(player);
 
         // get the word after the player's name as the action of the line
         String action = splittedLine[i];
@@ -174,28 +158,29 @@ public class HandCreator {
         if (action.equals("bets") || action.equals("raises") || action.equals("calls")) {
             // remove the "s" from action string
             action = action.substring(0, action.length() - 1);
-            bet = getAmountInCentsFromString(splittedLine[i + 1]);
+            bet = StringHelper.getAmountInCentsFromString(splittedLine[i + 1]);
         }
 
         // handle antes, bring ins and blinds
         if (splittedLine.length > i + 1) {
             if (splittedLine[i + 1].equals("ante")) {
                 action = "post ante"; // vai pelkkä ante?
-                bet = getAmountInCentsFromString(splittedLine[i + 2]);
+                bet = StringHelper.getAmountInCentsFromString(splittedLine[i + 2]);
                 potIncrement = bet;
             } else if (splittedLine[i + 1].equals("in")) {
                 action = "bring in";
-                bet = getAmountInCentsFromString(splittedLine[i + 3]);
-                potIncrement = bet;
-            } else  if (splittedLine[i + 1].equals("small")) {
-                action = "small blind";
-                bet = getAmountInCentsFromString(splittedLine[i + 2]);
-                potIncrement = bet;
-            } else  if (splittedLine[i + 1].equals("big")) {
-                action = "big blind";
-                bet = getAmountInCentsFromString(splittedLine[i + 2]);
+                bet = StringHelper.getAmountInCentsFromString(splittedLine[i + 3]);
                 potIncrement = bet;
             }
+//            } else  if (splittedLine[i + 1].equals("small")) {
+//                action = "small blind";
+//                bet = StringHelper.getAmountInCentsFromString(splittedLine[i + 2]);
+//                potIncrement = bet;
+//            } else  if (splittedLine[i + 1].equals("big")) {
+//                action = "big blind";
+//                bet = StringHelper.getAmountInCentsFromString(splittedLine[i + 2]);
+//                potIncrement = bet;
+//            }
         }
         
         // if hand has a winner, handle win and return true
@@ -205,19 +190,23 @@ public class HandCreator {
         }
         
         // add a new state to the action log with the current state of the game and return false
-        createState(player, action, bet, potIncrement);
+        createState(player, action, bet, potIncrement, null);
         return false;
                     // pitää lisätä myös maholliset jaetut kortit
     }
     
     // ei ota tällä hetkellä rakea huomioon eikä jakopotteja, mahollisesti pitää tehä playerille win -flägi
-    private void createSummary(String name) {
+    /**
+     * Creates a summary state that shows the winner of the hand and the net profits or losses of the players.
+     * @param name 
+     */
+    public void createSummary(String name) {
         // get players last bet to return it to the player
         int lastBet = states.get(states.size() - 1).getPlayers().stream().filter(p -> p.getName().equals(name)).findFirst().get().getBet();
         int pot = states.get(states.size() - 1).getPot();
         
         // add winscreen
-        createState(name, "wins " + pot, -1 * lastBet, 0);
+        createState(name, "wins " + pot, -1 * lastBet, 0, null);
         
         // form summary screen
         ArrayList<Player> players = states.get(states.size() - 1).getPlayers();
@@ -241,7 +230,13 @@ public class HandCreator {
         states.add(new GameState(summaryPlayers, pot));
     }
     
-    private int calculateProfit(String name, int addition) {
+    /**
+     * Calculates the profit of a player by comparing the stacksizes of the first and last game states. Can be given an addition (pot size) in case of the winner of the hand. 
+     * @param name
+     * @param addition
+     * @return 
+     */
+    public int calculateProfit(String name, int addition) {
         ArrayList<Player> initialPlayers = states.get(0).getPlayers();
         ArrayList<Player> endPlayers = states.get(states.size() - 1).getPlayers();
         int initialStack = initialPlayers.stream().filter(p -> p.getName().equals(name)).findFirst().get().getStackSize();
@@ -249,8 +244,16 @@ public class HandCreator {
         int endStack = endPlayers.stream().filter(p -> p.getName().equals(name)).findFirst().get().getStackSize() + addition;
         return endStack - initialStack;
     }
-     // ja getcards ehkä ongelma koska tulee shallow?
-    private void createState(String name, String label, int bet, int potIncrement) { // bet needs to be in cents
+    
+    /**
+     * Creates a new state by updating the player given as parameter and copying the remaining players from the previous state.
+     * @param name
+     * @param label
+     * @param bet
+     * @param potIncrement
+     * @param cardsToAdd 
+     */
+    public void createState(String name, String label, int bet, int potIncrement, ArrayList<Card> cardsToAdd) { // bet needs to be in cents
         // get player list and from previous state
         ArrayList<Player> previousPlayers = states.get(states.size() - 1).getPlayers();
         
@@ -263,8 +266,17 @@ public class HandCreator {
         for (Player p : previousPlayers) {
             if (p.getName().equals(name)) {
                 int newStackSize = p.getStackSize() - bet; // bet needs to be cents
+                // get a deep copy of players cards
+                ArrayList<Card> newCards = p.getCardsDeepCopy();
+                // add new cards if given as parameter
+                if (cardsToAdd != null && cardsToAdd.size() != 0) {
+                    for (Card c : cardsToAdd) {
+                        newCards.add(c);
+                    }
+                }
+                
                 // create new player with new data (bet can only be negative in case of hand completion)
-                Player newPlayer = new Player(name, newStackSize, p.getCards(), bet > 0 ? bet : 0, label);
+                Player newPlayer = new Player(name, newStackSize, newCards, bet > 0 ? bet : 0, label);
                 // set player's hasTurn to true
                 newPlayer.setHasTurn(true);
                 newPlayers.add(newPlayer);
@@ -278,36 +290,5 @@ public class HandCreator {
         // add a new state with updated player list
         GameState newState = new GameState(newPlayers, pot);
         states.add(newState);
-    }
-    
-    private int getActionIndex(String name) {
-        // return the index indicating player action
-        return name.split(" ").length;
-    }
-    
-    public int getAmountInCentsFromString(String stackString) {
-        /**
-         * Converts a string formatted '(x,xxx.xx)' to integer 'xxxxxx', ie. (1,999.26) returns 199926
-         */
-        
-        // remove parenthesis if they exist
-        if (stackString.startsWith("(")) {
-            stackString = stackString.substring(1, stackString.length() - 1);
-        }
-        
-        // if a decimal dot exists, remove it, if not, add two zeros to convert to cents
-        if (stackString.contains(".")) {
-            stackString = stackString.replaceAll("[.]", "");
-        } else {
-            stackString += "00";
-        }
-        
-        // remove possible commas
-        stackString = stackString.replaceAll("[,]", "");
-        
-        // convert to int
-        int stackSize = Integer.valueOf(stackString);
-        
-        return stackSize;
     }
 }

@@ -20,16 +20,6 @@ public class CardTest {
     public void setUp() {
     }
     
-    @Test(expected = IllegalArgumentException.class)
-    public void cantCreateHigherThan14() {
-        Card c = new Card(15, Suit.DIAMONDS);
-    }
-    
-    @Test(expected = IllegalArgumentException.class)
-    public void cantCreateLowerThanOne() {
-        Card c = new Card(0, Suit.DIAMONDS);
-    }
-    
     // stringToSuit -testing:
     
     @Test
@@ -119,5 +109,17 @@ public class CardTest {
     public void cardToStringReturnsValueAndSuit() {
         Card c = new Card(9, Suit.DIAMONDS);
         assertEquals("9 of DIAMONDS", c.toString());
+    }
+    
+    @Test
+    public void testGetValue() {
+        Card c = new Card(10, Suit.DIAMONDS);
+        assertEquals(10, c.getValue());
+    }
+    
+    @Test
+    public void testGetSuit() {
+        Card c = new Card(10, Suit.DIAMONDS);
+        assertEquals(Suit.DIAMONDS, c.getSuit());
     }
 }

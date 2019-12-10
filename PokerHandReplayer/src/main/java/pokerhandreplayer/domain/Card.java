@@ -10,14 +10,26 @@ public class Card {
     }
 
     public Card(int value, Suit suit) {
-        if (value > 14 || value < 1) {
-            throw new IllegalArgumentException();
-        }
-        
         this.value = value;
         this.suit = suit;
     }
+
+    public Suit getSuit() {
+        return suit;
+    }
+
+    public int getValue() {
+        return value;
+    }
+
     
+    
+    /**
+     * Converts a string representing the value of a card to integer, and returns it.
+     * 
+     * @param value
+     * @return integer value of the parameter string
+     */
     public static int intValue(String value) {
         if (value.equals("A")) {
             return 14;

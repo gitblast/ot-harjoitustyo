@@ -1,5 +1,7 @@
 package replayertests.domain;
 
+import java.util.ArrayList;
+import static org.hamcrest.CoreMatchers.not;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -59,5 +61,50 @@ public class PlayerTest {
     @Test
     public void toStringWorksCorrectly() {
         assertEquals("TestPlayer (555.0 cent)", player.toString());
+    }
+    
+    @Test
+    public void broaderConstructorWorks() {
+        ArrayList<Card> cards = new ArrayList<>();
+        for (int i = 1; i < 4; i++) {
+            Card c = new Card(i, Suit.DIAMONDS);
+            cards.add(c);
+        }
+        
+        Player p = new Player("Test", 50, cards, 10, "testing");
+        Player d = new Player("Test", -50, cards, 10, "testing");
+        assertEquals("Test (50.0 cent)Test (0.0 cent)", p.toString() + d.toString());
+    }
+    
+    @Test
+    public void setCardsWorks() {
+        ArrayList<Card> cards = new ArrayList<>();
+        for (int i = 1; i < 4; i++) {
+            Card c = new Card(i, Suit.DIAMONDS);
+            cards.add(c);
+        }
+        
+        player.setCards(cards);
+        
+        assertEquals(cards, player.getCards());
+    }
+    
+    @Test
+    public void setLabelWorks() {
+        player.setLabel("LABEL");
+        assertEquals("LABEL", player.getLabel());
+    }
+    
+    @Test
+    public void deepcopyingReturnsDeepcopy() {
+        for (int i = 1; i < 4; i++) {
+            Card c = new Card(i, Suit.DIAMONDS);
+            player.addCard(c);
+        }
+        
+        ArrayList<Card> cards = player.getCards();
+        ArrayList<Card> deepCopy = player.getCardsDeepCopy();
+        
+        assertThat(deepCopy, not(cards));
     }
 }
