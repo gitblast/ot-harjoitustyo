@@ -52,3 +52,5 @@ Käyttäjä voi selata pelitiloja eteen tai taaksepäin vaihe vaiheelta, tällä
 [Laskarit](https://github.com/gitblast/ot-harjoitustyo/tree/master/laskarit)
 
 [Vaatimusmäärittely](https://github.com/gitblast/ot-harjoitustyo/blob/master/dokumentointi/vaatimusmaarittely.md)
+
+[Arkkitehtuuri](https://github.com/gitblast/ot-harjoitustyo/blob/master/dokumentointi/arkkitehtuuri.md)
