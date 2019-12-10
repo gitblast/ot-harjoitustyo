@@ -8,4 +8,7 @@
 | 26.11. | 4    | Lisää testejä ja sovelluslogiikkaa eteenpäin, tosin useiden ongelmien kera |
 | 1.12. | 5    | Sovelluslogiikkaa huomattavasti |
 | 3.12. | 6    | Sovelluslogiikan ongelmien ratkaisuja sekä tekstikäyttöliittymä testaamiseen |
-| yht   | 27   | | 
+| 7.12. | 3    | Sovelluslogiikan viimeistelyä ja refaktorointia |
+| 9.12. | 6    | Sovelluslogiikan hiontaa ja lisää testejä |
+| 10.12. | 4    | Testikattavuuden parantamista, javadocin ja dokumennoinnin parantelua |
+| yht   | 40   | | 
