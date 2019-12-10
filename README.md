@@ -52,6 +52,8 @@ Tällä hetkellä sovellus tunnistaa pelaajat, pelaajien lähtömerkkitilanteen 
 
 Käyttäjä voi selata pelitiloja eteen tai taaksepäin vaihe vaiheelta, tällä hetkellä kuitenkin vain tekstikäyttöliittymän avulla. Graafinen käyttöliittymä tulossa myöhemmin.
 
+[Käyttöohje](https://github.com/gitblast/ot-harjoitustyo/blob/master/dokumentointi/kayttoohje.md)
+
 [Pakkaus/luokkakaavio](https://github.com/gitblast/ot-harjoitustyo/blob/master/dokumentointi/arkkitehtuuri.md)
 
 [Tuntikirjanpito](https://github.com/gitblast/ot-harjoitustyo/blob/master/dokumentointi/tuntikirjanpito.md)
