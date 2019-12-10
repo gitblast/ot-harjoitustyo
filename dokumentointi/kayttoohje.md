@@ -15,4 +15,4 @@ java -jar PokerHandReplayer-1.0-SNAPSHOT.jar
 
 ## Replayn selaaminen eteen- ja taaksepäin
 
-Ohjelmassa on tällä hetkellä vain graafinen käyttöliittymä. Syöttämällä n ja painamalla enter käyttäjä pääsee seuraavaan pelitilaan, ja syöttämällä p ja enter edelliseen. Syöttämällä x suoritus lopetetaan.
+Ohjelmassa on tällä hetkellä vain tekstikäyttöliittymä. Syöttämällä n ja painamalla enter käyttäjä pääsee seuraavaan pelitilaan, ja syöttämällä p ja enter edelliseen. Syöttämällä x suoritus lopetetaan.
