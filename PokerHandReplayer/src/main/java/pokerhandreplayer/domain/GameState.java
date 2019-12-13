@@ -5,11 +5,23 @@ import java.util.ArrayList;
 public class GameState {
     private ArrayList<Player> players;
     private int pot; // in cents
+    private String comment;
 
     public GameState(ArrayList<Player> players, int pot) {
         this.players = players;
         this.pot = pot;
+        this.comment = "";
     }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+    
+    
 
     public ArrayList<Player> getPlayers() {
         return players;

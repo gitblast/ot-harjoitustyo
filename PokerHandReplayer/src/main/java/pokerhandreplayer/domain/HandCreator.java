@@ -30,13 +30,37 @@ public class HandCreator {
         ArrayList<String> lines = StringHelper.getLinesFromFile(handHistory);
         buildInitialState(lines);
         buildActionLog(lines);
-        return new Replay(states);
+        addComments(lines);
+        return new Replay(states, lines);
     }
     
     public Replay createHand(ArrayList<String> lines) {
         buildInitialState(lines);
         buildActionLog(lines);
-        return new Replay(states);
+        addComments(lines);
+        return new Replay(states, lines);
+    }
+    
+    public void addComments(ArrayList<String> lines) {
+        if (!lines.get(lines.size() - 1).startsWith("#####")) {
+            return;
+        }
+        
+        // index is -2 since the last line is #####
+        int i = lines.indexOf("#####") + 1;
+        for (GameState state : states) {
+            String line = lines.get(i);
+            if (line.startsWith("#####")) {
+                return;
+            }
+            
+            String[] split = line.split(":::");
+            if (split.length > 1) {
+                state.setComment(split[1]);
+            }
+            
+            i++;
+        }
     }
     
     /**

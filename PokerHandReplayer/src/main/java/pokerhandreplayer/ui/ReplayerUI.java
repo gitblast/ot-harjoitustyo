@@ -6,14 +6,11 @@
 package pokerhandreplayer.ui;
 
 import java.io.File;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 import javafx.application.Application;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -47,6 +44,7 @@ public class ReplayerUI extends Application {
     public static final int POT_HEIGHT = 60;
     public static final int btnHeight = 30;
     public static final int MARGIN = 80;
+    public static final int PADDING = 15;
     
     private Replay replay;  
     private Pane table;
@@ -64,6 +62,7 @@ public class ReplayerUI extends Application {
     
     public Scene handSelector(Stage primaryStage) {
         FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("TEXT files (*txt)", "*.txt"));
         TextArea text = new TextArea();
         
         Label textLabel = new Label("Or paste hand history below:");
@@ -88,7 +87,7 @@ public class ReplayerUI extends Application {
                 primaryStage.setWidth(WIDTH);
                 primaryStage.setHeight(replayScene.getHeight() + btnHeight);
             } else {
-                System.out.println("Error selecting file");
+                System.out.println("No file selected");
             }
             
         });
@@ -115,34 +114,84 @@ public class ReplayerUI extends Application {
         prev.setPadding(new Insets(btnHeight, btnHeight, btnHeight, btnHeight));
         next.setPadding(new Insets(btnHeight, btnHeight, btnHeight, btnHeight));
         
+        Button addNew = new Button("Edit comment");
+        Button saveComment = new Button("Save comment");
+        
+        String commentText = replay.getCurrent().getComment();
+        Label comment = new Label(commentText.equals("") ? "No comments yet" : commentText);
+        comment.setPadding(new Insets(0, PADDING * 5, 0, PADDING));
+        comment.setMinWidth(WIDTH / 3 * 2);
+        comment.setMaxWidth(WIDTH / 3 * 2);
+        comment.setMaxHeight(btnHeight * 2 + 16);
+        comment.setWrapText(true);
+        
+        TextArea edit = new TextArea();
+        edit.setPadding(new Insets(0, PADDING * 5, 0, PADDING ));
+        edit.setMinWidth(WIDTH / 3 * 2);
+        edit.setMaxWidth(WIDTH / 3 * 2);
+        edit.setMaxHeight(btnHeight * 2 + 16);
+        edit.setWrapText(true);
+        
+        HBox buttonBox = new HBox(prev, next, comment, addNew);
+        buttonBox.setPadding(new Insets(0, PADDING, 0, PADDING));
+        buttonBox.setSpacing(5);
+        
+        Button back = new Button("Return");
+        Button save = new Button("Save hand");
+        
+        addNew.setOnAction(e -> {
+            buttonBox.getChildren().removeAll(comment, addNew);
+            edit.setText(comment.textProperty().get());
+            buttonBox.getChildren().addAll(edit, saveComment);
+        });
+        
+        saveComment.setOnAction(e -> {
+            buttonBox.getChildren().removeAll(edit, saveComment);
+            replay.getCurrent().setComment(edit.textProperty().get());
+            comment.setText(replay.getCurrent().getComment());
+            buttonBox.getChildren().addAll(comment, addNew);
+        });
+        
         prev.setOnAction(e -> {
-            setPlayers(replay.getPrev());
+            setPlayers(replay.getPrev());            
+            comment.setText(replay.getCurrent().getComment().equals("") ? "No comments yet" : replay.getCurrent().getComment());
         });
         
         next.setOnAction(e -> {
             setPlayers(replay.getNext());
+            comment.setText(replay.getCurrent().getComment().equals("") ? "No comments yet" : replay.getCurrent().getComment());
         });
         
-        HBox buttonBox = new HBox(prev, next);
-        buttonBox.setAlignment(Pos.CENTER);
-        buttonBox.setSpacing(5);
-        
-        Button back = new Button("Return");
+        save.setOnAction(e -> {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("TEXT files (*txt)", "*.txt"));
+            File file = fileChooser.showSaveDialog(primaryStage);
+            
+            String hh = replay.getAsStringWithComments();
+            if (file != null) {
+                if (!file.getName().contains(".")) {
+                    file = new File(file.getAbsolutePath() + ".txt");
+                }
+                saveTextToFile(hh, file);
+            }
+        });
         
         back.setOnAction(e -> {
             primaryStage.setScene(handSelector(primaryStage));
             primaryStage.sizeToScene();
         });
         
-        HBox topBar = new HBox(back);
+        HBox topBar = new HBox(back, save);
+        topBar.setSpacing(5);
+        topBar.setPadding(new Insets(0, PADDING, 0, PADDING));
         
         VBox top = new VBox(topBar, table);
         BorderPane root = new BorderPane();
         top.setSpacing(20);
-        root.setTop(back);
+        root.setTop(topBar);
         root.setCenter(table);
-        root.setBottom(buttonBox);
-        root.setPadding(new Insets(15, 15, 15, 15));
+        root.setBottom(buttonBox);        
+        root.setPadding(new Insets(PADDING, 0, PADDING, 0));
         Scene replayer = new Scene(root, WIDTH, HEIGHT + btnHeight + MARGIN * 2);
         return replayer;
     }
@@ -240,5 +289,15 @@ public class ReplayerUI extends Application {
         Label text = new Label(player.getLabel());
         text.setTextFill(Color.ALICEBLUE);
         return new StackPane(bg, text);
+    }
+    
+    private void saveTextToFile(String content, File file) {
+        try {
+            PrintWriter writer = new PrintWriter(file);
+            writer.println(content);
+            writer.close();
+        } catch (Exception ex) {
+            System.out.println("Error saving: " + ex.getMessage());
+        }
     }
 }
