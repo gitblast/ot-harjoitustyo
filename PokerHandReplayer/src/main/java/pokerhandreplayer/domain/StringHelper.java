@@ -5,8 +5,10 @@
  */
 package pokerhandreplayer.domain;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Scanner;
 
 /**
  *
@@ -132,5 +134,20 @@ public class StringHelper {
         String[] splittedLine = line.split(" ");
         String stackString = splittedLine[splittedLine.length - 1];
         return StringHelper.getAmountInCentsFromString(stackString);
+    }
+    
+    public static ArrayList<String> getLinesFromFile(File file) {        
+        ArrayList<String> lines = new ArrayList<>();
+        
+        try {
+            Scanner scanner = new Scanner(file);
+            while (scanner.hasNextLine()) {
+                lines.add(scanner.nextLine());
+            }
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+        
+        return lines;
     }
 }

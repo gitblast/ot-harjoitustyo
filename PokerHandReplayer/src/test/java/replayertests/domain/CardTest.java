@@ -122,4 +122,20 @@ public class CardTest {
         Card c = new Card(10, Suit.DIAMONDS);
         assertEquals(Suit.DIAMONDS, c.getSuit());
     }
+    
+    @Test
+    public void testGetString() {
+        StringBuilder s = new StringBuilder();
+        
+        for (int i = 9; i < 15; i++) {
+            s.append(new Card(i, Suit.DIAMONDS).getString());
+            s.append(new Card(i, Suit.SPADES).getString());
+            s.append(new Card(i, Suit.CLUBS).getString());
+            s.append(new Card(i, Suit.HEARTS).getString());
+        }
+        
+        System.out.println(s.toString());
+        
+        assertEquals("9d9s9c9hTdTsTcThJdJsJcJhQdQsQcQhKdKsKcKhAdAsAcAh", s.toString());
+    }
 }

@@ -19,7 +19,13 @@ public class GameState {
         return pot;
     }
     
-    
+    public ArrayList<String> getPlayerNames() {
+        ArrayList<String> names = new ArrayList<>();
+        for (Player p : players) {
+            names.add(p.getName());
+        }
+        return names;
+    }
     
     public String toString() {    
         String s = "";

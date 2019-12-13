@@ -10,6 +10,7 @@ public class Player {
     private String label; // bets, calls, raises, etc
     private int bet; // in cents
     private boolean hasTurn;
+    private boolean hasFolded;
     
     // mieti kannattaako tehä pelaajakohtanen lista burnatuille/vaihetuille korteille vetopeleihi
 
@@ -20,6 +21,7 @@ public class Player {
         this.bet = 0;
         this.label = "";
         this.hasTurn = false;
+        this.hasFolded = false;
     }
     
     public Player(String name, int stackSize, ArrayList<Card> cards, int bet, String label) {
@@ -29,6 +31,14 @@ public class Player {
         this.bet = bet;
         this.label = label;
         this.hasTurn = false;
+    }
+
+    public void setHasFolded(boolean hasFolded) {
+        this.hasFolded = hasFolded;
+    }
+    
+    public boolean hasFolded() {
+        return hasFolded;
     }
     
     public Boolean reduceStack(int amount) {

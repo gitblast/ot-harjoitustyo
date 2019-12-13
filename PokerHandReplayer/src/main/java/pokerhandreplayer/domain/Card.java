@@ -22,7 +22,40 @@ public class Card {
         return value;
     }
 
-    
+    public String getString() {
+        String suitString = "";
+        String valueString = "";
+        
+        if (suit == Suit.CLUBS) {
+            suitString = "c";
+        } else if (suit == Suit.DIAMONDS) {
+            suitString = "d";
+        } else if (suit == Suit.HEARTS) {
+            suitString = "h";
+        } else if (suit == Suit.SPADES) {
+            suitString = "s";
+        }
+        
+        
+        if (value == -1) {
+            valueString = "X";
+        } else if (value == 10) {
+            valueString = "T";
+        } else if (value == 11) {
+            valueString = "J";
+        } else if (value == 12) {
+            valueString = "Q";
+        } else if (value == 13) {
+            valueString = "K";
+        } else if (value == 14 || value == 1) {
+            valueString = "A";
+        } else {
+            valueString = String.valueOf(value);
+        }
+        
+        return valueString + suitString;
+        
+    }
     
     /**
      * Converts a string representing the value of a card to integer, and returns it.

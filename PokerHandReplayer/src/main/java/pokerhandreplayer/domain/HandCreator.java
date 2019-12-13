@@ -1,5 +1,6 @@
 package pokerhandreplayer.domain;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -25,10 +26,17 @@ public class HandCreator {
      * @param lines
      * @return list of gamestates representing the hand history given as parameter
      */
-    public ArrayList<GameState> createHand(ArrayList<String> lines) {
+    public Replay createHand(File handHistory) {
+        ArrayList<String> lines = StringHelper.getLinesFromFile(handHistory);
         buildInitialState(lines);
         buildActionLog(lines);
-        return states;
+        return new Replay(states);
+    }
+    
+    public Replay createHand(ArrayList<String> lines) {
+        buildInitialState(lines);
+        buildActionLog(lines);
+        return new Replay(states);
     }
     
     /**
@@ -72,8 +80,7 @@ public class HandCreator {
                     boolean handComplete = addPlayerAction(line, player);
                     
                     if (handComplete) {
-                        // handle hand ending
-                        System.out.println("HAND COMPLETED on line " + line);
+                        // handle hand end
                         return;
                     }
                 }
@@ -101,7 +108,7 @@ public class HandCreator {
         ArrayList<Player> previous = states.get(states.size() - 1).getPlayers();
         String name = StringHelper.getNameFromLine(line);
         ArrayList<Card> newCards = StringHelper.getCardsFromLine(line);
-        createState(name, "dealt cards", 0, 0, newCards);
+        createState(name, "dealt cards", -1, 0, newCards);
     }
     
     /**
@@ -121,6 +128,7 @@ public class HandCreator {
             newPlayer.setCards(p.getCardsDeepCopy());
             if (p.getLabel().equals("fold") || p.getLabel().equals("folded")) {
                 newPlayer.setLabel("folded");
+                newPlayer.setHasFolded(true);
             } else {
                 newPlayer.setLabel("waiting for turn");
             }
@@ -150,6 +158,8 @@ public class HandCreator {
 
         // handle folds, calls and 'wins'
         if (action.equals("folds") || action.equals("checks")) {
+            // tähän vois lisätä sellasen joka tarkistaa edellisen staten labelin ja jos se on bring in tai blindi, asettaa betsiks edellisen bet
+            
             // remove the "s" from action string
             action = action.substring(0, action.length() - 1); // ehkä jos "wins" niin bet vois olla potin koko
         }
@@ -206,7 +216,7 @@ public class HandCreator {
         int pot = states.get(states.size() - 1).getPot();
         
         // add winscreen
-        createState(name, "wins " + pot, -1 * lastBet, 0, null);
+        createState(name, "wins " + pot / 100, -1 * lastBet, 0, null);
         
         // form summary screen
         ArrayList<Player> players = states.get(states.size() - 1).getPlayers();
@@ -218,10 +228,10 @@ public class HandCreator {
             // add the pot in the winners stack
             if (p.getName().equals(name)) { // ehkä if winner == true ?
                 newPlayer = new Player(name, p.getStackSize() + pot);
-                newPlayer.setLabel("WON " + calculateProfit(name, pot));
+                newPlayer.setLabel("WON " + calculateProfit(name, pot) / 100);
             } else {
                 newPlayer = new Player(p.getName(), p.getStackSize());
-                newPlayer.setLabel(("LOST " + calculateProfit(p.getName(), 0)));
+                newPlayer.setLabel(("LOST " + calculateProfit(p.getName(), 0) / 100));
                 
             }
             summaryPlayers.add(newPlayer);
@@ -261,6 +271,7 @@ public class HandCreator {
         int pot = states.get(states.size() - 1).getPot() + potIncrement;
         
         ArrayList<Player> newPlayers = new ArrayList<>();
+        boolean cardsDealt = cardsToAdd != null && cardsToAdd.size() != 0;
         
         // change the player whose name is given as a parameter and copy the rest to newPlayers
         for (Player p : previousPlayers) {
@@ -269,20 +280,31 @@ public class HandCreator {
                 // get a deep copy of players cards
                 ArrayList<Card> newCards = p.getCardsDeepCopy();
                 // add new cards if given as parameter
-                if (cardsToAdd != null && cardsToAdd.size() != 0) {
+                if (cardsDealt) {
                     for (Card c : cardsToAdd) {
                         newCards.add(c);
                     }
                 }
                 
-                // create new player with new data (bet can only be negative in case of hand completion)
+                // create new player with new data (bet can only be negative in case of hand completion or dealing cards)
                 Player newPlayer = new Player(name, newStackSize, newCards, bet > 0 ? bet : 0, label);
                 // set player's hasTurn to true
                 newPlayer.setHasTurn(true);
+                
+                if (label.equals("folded") || label.equals("fold")) {
+                    newPlayer.setHasFolded(true);
+                }
+                
                 newPlayers.add(newPlayer);
             } else {
+                // check if cards are being dealt, and if so set bet to 0
+                int correctPot = cardsDealt ? 0 : p.getBet();
+                Player newPlayer = new Player(p.getName(), p.getStackSize(), p.getCards(), correctPot, p.getLabel());
+                if (p.getLabel().equals("folded") || p.getLabel().equals("fold")) {
+                    newPlayer.setHasFolded(true);
+                }
                 // set hasTurn to false
-                Player newPlayer = new Player(p.getName(), p.getStackSize(), p.getCards(), p.getBet(), p.getLabel());
+                newPlayer.setHasTurn(false);
                 newPlayers.add(newPlayer);
             }
         }

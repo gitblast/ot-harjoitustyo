@@ -12,6 +12,11 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>12.0.2</version>
+        </dependency>
     </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -30,9 +35,9 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <configuration>
-    <javadocExecutable>${java.home}/bin/javadoc</javadocExecutable>
-    <source>8</source>
-</configuration>
+                    <javadocExecutable>${java.home}/bin/javadoc</javadocExecutable>
+                    <source>8</source>
+                </configuration>
                 <version>2.10.3</version>
             </plugin>
             <plugin>
@@ -80,6 +85,14 @@
                     </configuration>
                 </execution>
             </executions>
+        </plugin>
+        <plugin>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-maven-plugin</artifactId>
+            <version>0.0.3</version>
+            <configuration>
+                <mainClass>org.openjfx.App</mainClass>
+            </configuration>
         </plugin>
         </plugins>
 
