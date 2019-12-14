@@ -11,4 +11,6 @@
 | 7.12. | 3    | Sovelluslogiikan viimeistelyä ja refaktorointia |
 | 9.12. | 6    | Sovelluslogiikan hiontaa ja lisää testejä |
 | 10.12. | 4    | Testikattavuuden parantamista, javadocin ja dokumennoinnin parantelua |
-| yht   | 40   | | 
+| 12.12. | 5    | Graafinen käyttöliittymä lähes valmiiksi |
+| 13.12. | 7    | Graafinen käyttöliittymä loppuun sekä loppuhionnat |
+| yht   | 52   | | 
