@@ -2,11 +2,11 @@
 ## Sovelluksen tarkoitus
 Sovelluksen avulla käyttäjä voi käydä läpi graafisessa muodossa standardimuotoisia mixed games -pokerikäsihistorioita askel askeleelta, jättää kommentteja ja kysymyksiä ennen jokaista actionia ja analysoida jälkikäteen omaa peliään.
 ## Käyttäjät
-Alkuvaiheessa sovelluksella on ainoastaa yksi käyttäjärooli.
-## Perusversion toiminnallisuus
-* Käden importtaus tekstimuodossa sovellukseen
+Alkuvaiheessa sovelluksella on ainoastaan yksi käyttäjärooli.
+## Perusversion toiminnallisuus (päivitetty 13.12.2019)
+* Käden importtaus tekstimuodossa sovellukseen sekä tekstitiedostosta että copy pastella
 * Käden läpikäynti graafisessa muodossa vaihe vaiheelta
 * Käden kommentointi vaihe vaiheelta
-* Mielenkiintoisten käsien tallennusmahdollisuus
+* Mielenkiintoisten käsien tallennusmahdollisuus kommentteineen
 ## Mahdollisesti myöhemmin lisättäviä toiminnallisuuksia
-* Jo aiemmin analysoidun käden exporttaaminen ja jakaminen kommentteineen muille ohjelman käyttäjille
+* Tuki kaikille pelimuodoille, myös vetopeleille
