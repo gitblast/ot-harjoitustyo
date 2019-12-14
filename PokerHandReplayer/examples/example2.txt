@@ -1,0 +1,61 @@
+#11563204: Limit 2-7 Razz - 30/60
+2019-04-22 21:39:37
+Table 'Bailey DrawOE'
+Seat 1: OB1 (1,770.50)
+Seat 2: WG111 (597)
+Seat 3: Bartsie (653.60)
+Seat 4: Poker2 (977)
+Seat 5: SingingInTheRain (2,342.75)
+Seat 6: Nofuture1 (1,236)
+OB1: posts ante 8
+WG111: posts ante 8
+Bartsie: posts ante 8
+Poker2: posts ante 8
+SingingInTheRain: posts ante 8
+Nofuture1: posts ante 8
+Dealt to WG111: [X X 6c]
+Dealt to Bartsie: [3d 2h 4h]
+Dealt to Poker2: [X X 9c]
+Dealt to SingingInTheRain: [X X Kh]
+Dealt to Nofuture1: [X X 5s]
+Dealt to OB1: [X X Jd]
+SingingInTheRain brings in for 10
+Nofuture1 bets 30
+OB1 folds
+WG111 raises to 60
+Bartsie calls 60
+Poker2 folds
+SingingInTheRain folds
+Nofuture1 raises to 90
+WG111 calls 90
+Bartsie calls 90
+*** 3RD STREET ***
+Dealt to WG111: [Jc]
+Dealt to Bartsie: [2s]
+Dealt to Nofuture1: [Ks]
+Bartsie bets 30
+Nofuture1 calls 30
+WG111 calls 30
+*** 4TH STREET ***
+Dealt to WG111: [Qc]
+Dealt to Bartsie: [3s]
+Dealt to Nofuture1: [7c]
+Bartsie bets 60
+Nofuture1 calls 60
+WG111 folds
+*** 5TH STREET ***
+Dealt to Bartsie: [Qh]
+Dealt to Nofuture1: [Tc]
+Bartsie checks
+Nofuture1 bets 60
+Bartsie folds
+Nofuture1 wins pot (533)
+*** SUMMARY ***
+Seat 1: OB1 (1,762.50) -8
+Seat 2: WG111 (469) -128
+Seat 3: Bartsie (465.60) -188
+Seat 4: Poker2 (969) -8
+Seat 5: SingingInTheRain (2,324.75) -18
+Seat 6: Nofuture1 (1,581) +345
+Rake 5
+

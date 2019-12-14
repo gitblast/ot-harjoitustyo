@@ -5,8 +5,6 @@
     "http://www.puppycrawl.com/dtds/suppressions_1_1.dtd">
 
 <suppressions>
-    <!-- tähän ui -path sitte ku valmis
-    <suppress files="todoapp.ui.TodoUi.java" checks="[a-zA-Z0-9]*"/>
-    -->
     <suppress files="pokerhandreplayer.ui.TextUi.java" checks="[a-zA-Z0-9]*"/>
+    <suppress files="pokerhandreplayer.ui.ReplayerUI.java" checks="[a-zA-Z0-9]*"/>
 </suppressions>

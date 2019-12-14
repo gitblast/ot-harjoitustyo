@@ -1,0 +1,63 @@
+#11586125: Limit 2-7 Razz - 30/60
+2019-04-23 20:15:44
+Table 'Crazy Mix'
+Seat 1: Docile Lamb (2,357.90)
+Seat 2: OB1 (1,128)
+Seat 3: Nutpumper (945)
+Seat 4: Jabcity (1,795)
+Seat 5: outback (2,207.50)
+Seat 6: Bartsie (1,003)
+Docile Lamb: posts ante 8
+OB1: posts ante 8
+Nutpumper: posts ante 8
+Jabcity: posts ante 8
+outback: posts ante 8
+Bartsie: posts ante 8
+Dealt to Docile Lamb: [X X 2c]
+Dealt to OB1: [X X 7c]
+Dealt to Nutpumper: [X X 4c]
+Dealt to Jabcity: [X X 7h]
+Dealt to outback: [X X Qc]
+Dealt to Bartsie: [Ts 4s 2s]
+outback brings in for 10
+Bartsie bets 30
+Docile Lamb folds
+OB1 folds
+Nutpumper folds
+Jabcity raises to 60
+outback folds
+Bartsie calls 60
+*** 3RD STREET ***
+Dealt to Jabcity: [3h]
+Dealt to Bartsie: [7s]
+Bartsie checks
+Jabcity bets 30
+Bartsie calls 30
+*** 4TH STREET ***
+Dealt to Jabcity: [Jh]
+Dealt to Bartsie: [8s]
+Bartsie checks
+Jabcity bets 60
+Bartsie calls 60
+*** 5TH STREET ***
+Dealt to Jabcity: [8c]
+Dealt to Bartsie: [8h]
+Jabcity bets 60
+Bartsie calls 60
+*** 6TH STREET ***
+Dealt to Jabcity: [X]
+Dealt to Bartsie: [5c]
+Jabcity checks
+Bartsie bets 60
+Jabcity calls 60
+Jabcity shows [2h 9h 7h 3h Jh 8c Jd]
+Bartsie shows [4s 5c 2s 7s 8s 8h Ts]
+Bartsie wins pot (593)
+*** SUMMARY ***
+Seat 1: Docile Lamb (2,349.90) -8
+Seat 2: OB1 (1,120) -8
+Seat 3: Nutpumper (937) -8
+Seat 4: Jabcity (1,517) -278
+Seat 5: outback (2,189.50) -18
+Seat 6: Bartsie (1,318) +315
+Rake 5

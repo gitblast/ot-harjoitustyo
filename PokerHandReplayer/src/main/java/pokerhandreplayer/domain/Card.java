@@ -4,11 +4,19 @@ public class Card {
     private int value;
     private Suit suit;
     
-    public Card() { // constructor for unknown card
+    /**
+     * Creates an instance representing a card with an unknown value and suit
+     */
+    public Card() {
         this.value = -1;
         this.suit = null;
     }
 
+    /**
+     * Creates an instance of card with a value and a suit
+     * @param value
+     * @param suit 
+     */
     public Card(int value, Suit suit) {
         this.value = value;
         this.suit = suit;
@@ -22,6 +30,10 @@ public class Card {
         return value;
     }
 
+    /**
+     * Returns the short string representation of the card, ie. an ace of spades returns As
+     * @return string representation of card
+     */
     public String getString() {
         String suitString = "";
         String valueString = "";
@@ -79,6 +91,11 @@ public class Card {
         }
     }
     
+    /**
+     * Converts a string representing a suit to suit and returns it
+     * @param suit
+     * @return suit object
+     */
     public static Suit stringToSuit(String suit) {
         if (suit.equals("s")) {
             return Suit.SPADES;

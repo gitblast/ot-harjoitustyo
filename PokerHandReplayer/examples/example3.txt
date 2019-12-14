@@ -1,0 +1,79 @@
+#11563272: Limit 2-7 Razz - 30/60
+2019-04-22 21:42:22
+Table 'Bailey DrawOE'
+Seat 1: OB1 (1,804.50)
+Seat 2: WG111 (273)
+Seat 3: Bartsie (600)
+Seat 4: Poker2 (943)
+Seat 5: SingingInTheRain (2,308.75)
+Seat 6: Nofuture1 (1,798)
+OB1: posts ante 8
+WG111: posts ante 8
+Bartsie: posts ante 8
+Poker2: posts ante 8
+SingingInTheRain: posts ante 8
+Nofuture1: posts ante 8
+Dealt to WG111: [X X 6s]
+Dealt to Bartsie: [2s 7h 6d]
+Dealt to Poker2: [X X Ks]
+Dealt to SingingInTheRain: [X X 3c]
+Dealt to Nofuture1: [X X 6c]
+Dealt to OB1: [X X 7d]
+Poker2 brings in for 10
+SingingInTheRain bets 30
+Nofuture1 calls 30
+OB1 folds
+WG111 calls 30
+Bartsie raises to 60
+Poker2 folds
+SingingInTheRain raises to 90
+Nofuture1 calls 90
+WG111 calls 90
+Bartsie calls 90
+*** 3RD STREET ***
+Dealt to WG111: [7c]
+Dealt to Bartsie: [Qs]
+Dealt to SingingInTheRain: [5h]
+Dealt to Nofuture1: [Kh]
+SingingInTheRain bets 30
+Nofuture1 folds
+WG111 calls 30
+Bartsie calls 30
+*** 4TH STREET ***
+Dealt to WG111: [Jh]
+Dealt to Bartsie: [Ts]
+Dealt to SingingInTheRain: [As]
+WG111 bets 60
+Bartsie calls 60
+SingingInTheRain raises to 120
+WG111 raises to 145, and is all in
+Bartsie calls 145
+SingingInTheRain calls 145
+*** 5TH STREET ***
+Dealt to WG111: [Tc]
+Dealt to Bartsie: [4c]
+Dealt to SingingInTheRain: [8c]
+Bartsie checks
+SingingInTheRain bets 60
+Bartsie calls 60
+*** 6TH STREET ***
+Dealt to WG111: [X]
+Dealt to Bartsie: [Ad]
+Dealt to SingingInTheRain: [X]
+Bartsie checks
+SingingInTheRain bets 60
+Bartsie calls 60
+WG111 shows [5d 8d 6s 7c Jh Tc Ah]
+Bartsie shows [2s 7h 6d Qs Ts 4c Ad]
+SingingInTheRain shows [2d 4h 3c 5h As 8c 8h]
+SingingInTheRain wins side pot 1 (240)
+SingingInTheRain wins pot (938)
+*** SUMMARY ***
+Seat 1: OB1 (1,796.50) -8
+Seat 2: WG111 (0.00) -273
+Seat 3: Bartsie (207) -393
+Seat 4: Poker2 (925) -18
+Seat 5: SingingInTheRain (3,093.75) +785
+Seat 6: Nofuture1 (1,700) -98
+Rake 5
+

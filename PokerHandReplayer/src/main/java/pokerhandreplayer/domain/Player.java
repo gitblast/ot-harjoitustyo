@@ -11,8 +11,6 @@ public class Player {
     private int bet; // in cents
     private boolean hasTurn;
     private boolean hasFolded;
-    
-    // mieti kannattaako tehä pelaajakohtanen lista burnatuille/vaihetuille korteille vetopeleihi
 
     public Player(String name, int stackSize) {
         this.name = name;

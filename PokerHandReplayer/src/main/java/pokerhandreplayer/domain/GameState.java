@@ -7,6 +7,11 @@ public class GameState {
     private int pot; // in cents
     private String comment;
 
+    /**
+     * Creates an instance of a state of a poker hand. Needs to be given a list of players and the pot size as parameter
+     * @param players
+     * @param pot 
+     */
     public GameState(ArrayList<Player> players, int pot) {
         this.players = players;
         this.pot = pot;

@@ -1,0 +1,57 @@
+#11563568: Limit 2-7 Triple Draw - 30/60
+2019-04-22 21:55:50
+Table 'Bailey DrawOE' Seat 3 is the button
+Seat 1: OB1 (1,391.50)
+Seat 2: WG111 (775)
+Seat 3: Bartsie (600)
+Seat 4: Poker2 (1,062.50)
+Seat 5: MEGAFLOPS (600)
+Seat 6: Nofuture1 (1,519)
+*** 1ST BETTING ROUND ***
+Poker2: posts the small blind 15
+MEGAFLOPS: posts the big blind 30
+Dealt to Poker2: [X X X X X]
+Dealt to MEGAFLOPS: [X X X X X]
+Dealt to Nofuture1: [X X X X X]
+Dealt to OB1: [X X X X X]
+Dealt to WG111: [X X X X X]
+Dealt to Bartsie: [Ah Ac 3c 6c 5d]
+Nofuture1 folds
+OB1 folds
+WG111 folds
+Bartsie raises to 60
+Poker2 raises to 90
+MEGAFLOPS folds
+Bartsie calls 90
+*** 1ST DRAW ***
+Poker2 draws 2
+Bartsie discards [Ah Ac] draws [4s 5h]
+*** 2ND BETTING ROUND ***
+Poker2 bets 30
+Bartsie calls 30
+*** 2ND DRAW ***
+Poker2 draws 1
+Bartsie discards [5h] draws [4d]
+*** 3RD BETTING ROUND ***
+Poker2 checks
+Bartsie bets 60
+Poker2 calls 60
+*** 3RD DRAW ***
+Poker2 draws 1
+Bartsie stands pat
+*** 4TH BETTING ROUND ***
+Poker2 checks
+Bartsie bets 60
+Poker2 calls 60
+Bartsie shows [4s 4d 3c 6c 5d]
+Poker2 shows [2h 6d 8c 7s 5s]
+Poker2 wins pot (505)
+*** SUMMARY ***
+Seat 1: OB1 (1,391.50)
+Seat 2: WG111 (775)
+Seat 3: Bartsie (360) -240
+Seat 4: Poker2 (1,327.50) +265
+Seat 5: MEGAFLOPS (570) -30
+Seat 6: Nofuture1 (1,519)
+Rake 5
+

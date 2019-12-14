@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pokerhandreplayer.ui;
 
 import java.io.File;
@@ -42,7 +37,7 @@ public class ReplayerUI extends Application {
     public static final int CARD_HEIGHT = 120;
     public static final int POT_WIDTH = 120;
     public static final int POT_HEIGHT = 60;
-    public static final int btnHeight = 30;
+    public static final int BTN_HEIGHT = 30;
     public static final int MARGIN = 80;
     public static final int PADDING = 15;
     
@@ -85,7 +80,7 @@ public class ReplayerUI extends Application {
                 Scene replayScene = replayer(primaryStage);
                 primaryStage.setScene(replayScene);                
                 primaryStage.setWidth(WIDTH);
-                primaryStage.setHeight(replayScene.getHeight() + btnHeight);
+                primaryStage.setHeight(replayScene.getHeight() + BTN_HEIGHT);
             } else {
                 System.out.println("No file selected");
             }
@@ -100,7 +95,7 @@ public class ReplayerUI extends Application {
             Scene replayScene = replayer(primaryStage);
             primaryStage.setScene(replayScene);                
             primaryStage.setWidth(WIDTH);
-            primaryStage.setHeight(replayScene.getHeight() + btnHeight);
+            primaryStage.setHeight(replayScene.getHeight() + BTN_HEIGHT);
         });
         
         return scene;
@@ -111,8 +106,8 @@ public class ReplayerUI extends Application {
         setPlayers(initialState);
         Button prev = new Button("<");
         Button next = new Button(">");
-        prev.setPadding(new Insets(btnHeight, btnHeight, btnHeight, btnHeight));
-        next.setPadding(new Insets(btnHeight, btnHeight, btnHeight, btnHeight));
+        prev.setPadding(new Insets(BTN_HEIGHT, BTN_HEIGHT, BTN_HEIGHT, BTN_HEIGHT));
+        next.setPadding(new Insets(BTN_HEIGHT, BTN_HEIGHT, BTN_HEIGHT, BTN_HEIGHT));
         
         Button addNew = new Button("Edit comment");
         Button saveComment = new Button("Save comment");
@@ -122,14 +117,14 @@ public class ReplayerUI extends Application {
         comment.setPadding(new Insets(0, PADDING * 5, 0, PADDING));
         comment.setMinWidth(WIDTH / 3 * 2);
         comment.setMaxWidth(WIDTH / 3 * 2);
-        comment.setMaxHeight(btnHeight * 2 + 16);
+        comment.setMaxHeight(BTN_HEIGHT * 2 + 16);
         comment.setWrapText(true);
         
         TextArea edit = new TextArea();
         edit.setPadding(new Insets(0, PADDING * 5, 0, PADDING ));
         edit.setMinWidth(WIDTH / 3 * 2);
         edit.setMaxWidth(WIDTH / 3 * 2);
-        edit.setMaxHeight(btnHeight * 2 + 16);
+        edit.setMaxHeight(BTN_HEIGHT * 2 + 16);
         edit.setWrapText(true);
         
         HBox buttonBox = new HBox(prev, next, comment, addNew);
@@ -192,7 +187,7 @@ public class ReplayerUI extends Application {
         root.setCenter(table);
         root.setBottom(buttonBox);        
         root.setPadding(new Insets(PADDING, 0, PADDING, 0));
-        Scene replayer = new Scene(root, WIDTH, HEIGHT + btnHeight + MARGIN * 2);
+        Scene replayer = new Scene(root, WIDTH, HEIGHT + BTN_HEIGHT + MARGIN * 2);
         return replayer;
     }
     

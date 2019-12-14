@@ -2,12 +2,14 @@ package pokerhandreplayer.domain;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class HandCreator {
     private ArrayList<String> playerNames;
     private ArrayList<GameState> states;
 
+    /**
+     * Creates an object that converts list of strings to a Replay object
+     */
     public HandCreator() {
         this.playerNames = new ArrayList<>();
         this.states = new ArrayList<>();
@@ -22,9 +24,9 @@ public class HandCreator {
     }
     
     /**
-     * Takes an arraylist of strings from a hand history -text file and converts it to an arraylist of game states.
-     * @param lines
-     * @return list of gamestates representing the hand history given as parameter
+     * Takes an arraylist of strings from a text file and converts it to an arraylist of game states.
+     * @param handHistory
+     * @return Replay -object
      */
     public Replay createHand(File handHistory) {
         ArrayList<String> lines = StringHelper.getLinesFromFile(handHistory);
@@ -34,6 +36,11 @@ public class HandCreator {
         return new Replay(states, lines);
     }
     
+    /**
+     * Takes an arraylist of strings from a hand history -text file and converts it to an arraylist of game states.
+     * @param lines
+     * @return Replay -object
+     */
     public Replay createHand(ArrayList<String> lines) {
         buildInitialState(lines);
         buildActionLog(lines);
@@ -41,12 +48,15 @@ public class HandCreator {
         return new Replay(states, lines);
     }
     
+    /**
+     * Checks for added comments in the end of the hand history, and in case found adds them to corresponding game states
+     * @param lines 
+     */
     public void addComments(ArrayList<String> lines) {
         if (!lines.get(lines.size() - 1).startsWith("#####")) {
             return;
         }
         
-        // index is -2 since the last line is #####
         int i = lines.indexOf("#####") + 1;
         for (GameState state : states) {
             String line = lines.get(i);
@@ -182,8 +192,6 @@ public class HandCreator {
 
         // handle folds, calls and 'wins'
         if (action.equals("folds") || action.equals("checks")) {
-            // tähän vois lisätä sellasen joka tarkistaa edellisen staten labelin ja jos se on bring in tai blindi, asettaa betsiks edellisen bet
-            
             // remove the "s" from action string
             action = action.substring(0, action.length() - 1); // ehkä jos "wins" niin bet vois olla potin koko
         }
@@ -192,13 +200,17 @@ public class HandCreator {
         if (action.equals("bets") || action.equals("raises") || action.equals("calls")) {
             // remove the "s" from action string
             action = action.substring(0, action.length() - 1);
-            bet = StringHelper.getAmountInCentsFromString(splittedLine[i + 1]);
+            String betString = splittedLine[i + 1];
+            if (action.equals("raise")) {
+                betString = splittedLine[i + 2];
+            }
+            bet = StringHelper.getAmountInCentsFromString(betString);
         }
 
         // handle antes, bring ins and blinds
         if (splittedLine.length > i + 1) {
             if (splittedLine[i + 1].equals("ante")) {
-                action = "post ante"; // vai pelkkä ante?
+                action = "post ante";
                 bet = StringHelper.getAmountInCentsFromString(splittedLine[i + 2]);
                 potIncrement = bet;
             } else if (splittedLine[i + 1].equals("in")) {
@@ -206,30 +218,24 @@ public class HandCreator {
                 bet = StringHelper.getAmountInCentsFromString(splittedLine[i + 3]);
                 potIncrement = bet;
             }
-//            } else  if (splittedLine[i + 1].equals("small")) {
-//                action = "small blind";
-//                bet = StringHelper.getAmountInCentsFromString(splittedLine[i + 2]);
-//                potIncrement = bet;
-//            } else  if (splittedLine[i + 1].equals("big")) {
-//                action = "big blind";
-//                bet = StringHelper.getAmountInCentsFromString(splittedLine[i + 2]);
-//                potIncrement = bet;
-//            }
         }
         
         // if hand has a winner, handle win and return true
-        if (action.equals("wins")) { // pitää tarkistaa splittipotit !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        if (action.equals("wins")) {
             createSummary(player);
             return true;
+        }
+        
+        if (action.equals("shows")) {
+            createState(player, action, bet, potIncrement, StringHelper.getCardsFromLine(line));
+            return false;
         }
         
         // add a new state to the action log with the current state of the game and return false
         createState(player, action, bet, potIncrement, null);
         return false;
-                    // pitää lisätä myös maholliset jaetut kortit
     }
     
-    // ei ota tällä hetkellä rakea huomioon eikä jakopotteja, mahollisesti pitää tehä playerille win -flägi
     /**
      * Creates a summary state that shows the winner of the hand and the net profits or losses of the players.
      * @param name 
@@ -302,7 +308,10 @@ public class HandCreator {
             if (p.getName().equals(name)) {
                 int newStackSize = p.getStackSize() - bet; // bet needs to be cents
                 // get a deep copy of players cards
-                ArrayList<Card> newCards = p.getCardsDeepCopy();
+                ArrayList<Card> newCards = new ArrayList<Card>();
+                if (!label.equals("shows")) {
+                    newCards = p.getCardsDeepCopy();
+                }
                 // add new cards if given as parameter
                 if (cardsDealt) {
                     for (Card c : cardsToAdd) {
