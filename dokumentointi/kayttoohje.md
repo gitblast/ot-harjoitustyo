@@ -1,18 +1,29 @@
 # Käyttöohje
 
-Lataa ensin [tämä tiedosto](https://github.com/gitblast/ot-harjoitustyo/releases/download/viikko6/PokerHandReplayer-1.0-SNAPSHOT.jar), ja lisää sen juureen [tämä tiedosto](https://github.com/gitblast/ot-harjoitustyo/releases/download/viikko6/handhistory.txt)
+Lataa ensin [replayer.jar](https://github.com/gitblast/ot-harjoitustyo/releases/download/loppupalautus/replayer.jar), ja lisää sen juureen hakemisto [assets](https://github.com/gitblast/ot-harjoitustyo/tree/master/PokerHandReplayer/assets).
 
 ## Konfigurointi
 
-Ohjelma olettaa, että sen juuresta löytyy käynnistettäessä tiedosto handhistory.txt, joka on ylemmistä linkeistä jälkimmäinen tiedosto.
+Ohjelma olettaa, että sen juuresta löytyy käynnistettäessä hakemisto [assets](https://github.com/gitblast/ot-harjoitustyo/tree/master/PokerHandReplayer/assets), joka pitää sisällään kuvatiedoston jokaista pelikorttia kohden.
 
 ## Ohjelman käynnistäminen
 
 Ohjelma käynnistetään komennolla
 ```
-java -jar PokerHandReplayer-1.0-SNAPSHOT.jar
+java -jar replayer.jar
 ```
+## Käsihistorian importtaus
+
+Ohjelman käynnistyessä aukeaa ikkuna, jossa käyttäjä voi valita joko tekstitiedoston, joka sisältää käsihistorian, tai copy-pasteta käsihistorian suoraan tekstikenttään. Ohjelma kääntää käden automaattisesti. Esimerkkikäsiä ohjelman testaamiseen löytyy esimerkiksi hakemistosta [examples](https://github.com/gitblast/ot-harjoitustyo/tree/master/PokerHandReplayer/examples).
 
 ## Replayn selaaminen eteen- ja taaksepäin
 
-Ohjelmassa on tällä hetkellä vain tekstikäyttöliittymä. Syöttämällä n ja painamalla enter käyttäjä pääsee seuraavaan pelitilaan, ja syöttämällä p ja enter edelliseen. Syöttämällä x suoritus lopetetaan.
+Käsihistoriaa voi importtauksen jälkeen eteen ja taaksepäin vasemmasta alakulmasta löytyvillä nuolipainikkeilla.
+
+## Kommenttien muokkaaminen ja lisääminen
+
+Käyttäjä näkee pelitilanteeseen mahdollisesti asetetut kommentit nuolinäppäinten oikealla puolella. Painamalla "edit comment" -näppäintä käyttäjä pääsee muokkaamaan tilanteen kommenttia, ja sen jälkeen "save comment" -painikkeella tallentamaan uuden kommentin.
+
+## Käden tallennus kommentteineen
+
+Vasemmasta yläkulmasta löytyvä "save hand" -painike tallentaa käden kommentteineen käyttäjän valitsemaan hakemistoon. Käsi tallennetaan .txt -tiedostona, jotta se olisi helppoa jakaa eteenpäin kommentteineen muille ohjelman käyttäjille. Tämä tekee käsien analysoinnista yhdessä helpompaa.
