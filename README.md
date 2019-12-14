@@ -22,7 +22,7 @@ PokerHandReplayer -hajemistossa:
 mvn test
 ```
 
-Jacoco -raportin generointi: (testauskattavuus tällä hetkellä huono, ohjelman seuraavassa versiossa se tulee olemaan kattavampi)
+Jacoco -raportin generointi:
 ```
 mvn test jacoco:report
 ```
@@ -33,7 +33,7 @@ mvn jxr:jxr checkstyle:checkstyle
 ```
 ## Suoritettavan jarin generointi
 
-PokerHandReplayer -hajemistossa: (ohjelma olettaa, että jar:n juurikansiosta löytyy kansio assets joka sisältää kuvat pelikorteista)
+PokerHandReplayer -hajemistossa: (ohjelma olettaa, että jar:n juurikansiosta löytyy kansio [assets](https://github.com/gitblast/ot-harjoitustyo/tree/master/PokerHandReplayer/assets) joka sisältää kuvat pelikorteista)
 ```
 mvn package
 ```
