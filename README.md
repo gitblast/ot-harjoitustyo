@@ -50,6 +50,8 @@ Käyttäjä voi ladata standardimuotoisia käsihistorioita ohjelmaan joko copy-p
 
 [Käyttöohje](https://github.com/gitblast/ot-harjoitustyo/blob/master/dokumentointi/kayttoohje.md)
 
+[Testausdokumentti](https://github.com/gitblast/ot-harjoitustyo/blob/master/dokumentointi/testaus.md)
+
 [Pakkaus/luokkakaavio](https://github.com/gitblast/ot-harjoitustyo/blob/master/dokumentointi/arkkitehtuuri.md)
 
 [Tuntikirjanpito](https://github.com/gitblast/ot-harjoitustyo/blob/master/dokumentointi/tuntikirjanpito.md)
