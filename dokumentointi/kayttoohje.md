@@ -18,7 +18,7 @@ Ohjelman käynnistyessä aukeaa ikkuna, jossa käyttäjä voi valita joko teksti
 
 ## Replayn selaaminen eteen- ja taaksepäin
 
-Käsihistoriaa voi importtauksen jälkeen eteen ja taaksepäin vasemmasta alakulmasta löytyvillä nuolipainikkeilla.
+Käsihistoriaa voi importtauksen jälkeen selata eteen ja taaksepäin vasemmasta alakulmasta löytyvillä nuolipainikkeilla.
 
 ## Kommenttien muokkaaminen ja lisääminen
 
